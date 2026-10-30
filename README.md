@@ -1,5 +1,7 @@
 # ShinePCB_MWI Calculator
 
+[在线使用 / Live calculator](https://board.calculator.shinepcba.com/)
+
 中英文微波板材阻抗计算器。计算在浏览器本地运行，使用 KiCad 传输线模型编译的 WebAssembly 内核，无需账号、API 密钥或后端服务。
 
 A Chinese/English microwave impedance calculator from ShinePCB. Calculations run locally in the browser using KiCad transmission-line models compiled to WebAssembly. No account, API key, or application backend is required.

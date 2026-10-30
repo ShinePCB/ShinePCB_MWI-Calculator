@@ -1,5 +1,6 @@
 /* English calculator UI catalog. GPL-3.0-or-later */
 export const english = {
+  "GitHub 开源代码": "Source code on GitHub",
   "晟电产品规格书，第 {0} 页": "SUNDEN product datasheet, page {0}",
   "晟电板材阻抗计算器": "ShinePCB Board Impedance Calculator",
   "板材计算器": "Board calculator",

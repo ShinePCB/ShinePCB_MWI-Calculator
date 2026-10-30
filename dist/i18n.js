@@ -1,7 +1,7 @@
 /* Explicit source-text catalog for the calculator.
  * UI text is localized at render time; engineering values remain unchanged.
  * GPL-3.0-or-later */
-import { english } from "./locales/en.js?v=095996b694";
+import { english } from "./locales/en.js?v=040ec6b489";
 
 export function getLanguage() {
   if (typeof window === "undefined") return "zh";
