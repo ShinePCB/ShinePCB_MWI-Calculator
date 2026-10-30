@@ -1,0 +1,22 @@
+{
+  "name": "shinepcb-mwi-calculator",
+  "version": "1.0.0",
+  "description": "ShinePCB_MWI Calculator: browser-based microwave impedance calculator",
+  "private": true,
+  "type": "module",
+  "license": "GPL-3.0-or-later",
+  "repository": { "type": "git", "url": "https://github.com/ShinePCB/ShinePCB_MWI-Calculator.git" },
+  "scripts": {
+    "build": "node scripts/build-materials.mjs && node scripts/stamp-version.mjs",
+    "dev": "node scripts/serve.mjs",
+    "test": "node --test scripts/test-materials-db.mjs scripts/test-i18n.mjs && node scripts/test-wasm.mjs && node scripts/test-engine.mjs && node scripts/test-algorithm-regressions.mjs",
+    "test:browser": "playwright test",
+    "materials": "node scripts/build-materials.mjs",
+    "materials:import": "node scripts/import-materials.mjs",
+    "source": "node scripts/pack-source.mjs",
+    "stamp": "node scripts/stamp-version.mjs"
+  },
+  "packageManager": "pnpm@11.19.0",
+  "engines": { "node": ">=22.13.0" },
+  "devDependencies": { "@playwright/test": "1.64.1" }
+}

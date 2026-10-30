@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 330 170" width="330" height="170" font-family="Segoe UI, Arial, sans-serif" font-weight="700">
+  <!-- Broadside-coupled stripline, drawn in the palette of KiCad's transmission-line bitmaps. -->
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#0081D5"/></marker>
+  </defs>
+  <g stroke="#895502" stroke-width="1.2" stroke-linejoin="round">
+    <path d="M10 48L40 18H318L288 48Z" fill="#FCB23C"/>
+    <rect x="10" y="48" width="278" height="8" fill="#FCB23C"/>
+    <path d="M288 48L318 18V26L288 56Z" fill="#FCB23C"/>
+  </g>
+  <g stroke="#474747" stroke-width="1.2" stroke-linejoin="round">
+    <rect x="10" y="56" width="278" height="88" fill="#CCCCCC"/>
+    <path d="M288 56L318 26V114L288 144Z" fill="#B9B9B9"/>
+  </g>
+  <g stroke="#895502" stroke-width="1.2" stroke-linejoin="round">
+    <rect x="10" y="144" width="278" height="8" fill="#FCB23C"/>
+    <path d="M288 144L318 114V122L288 152Z" fill="#FCB23C"/>
+  </g>
+  <!-- strips, with their far edges dashed through the dielectric -->
+  <g fill="none" stroke="#545454" stroke-width="1.2" stroke-dasharray="4 3">
+    <path d="M122 88L148 62H204L178 88M204 62V68"/>
+    <path d="M122 106L148 80H204L178 106M204 80V86"/>
+  </g>
+  <g fill="#FCB23C" stroke="#895502" stroke-width="1.2">
+    <rect x="122" y="88" width="56" height="6"/>
+    <rect x="122" y="106" width="56" height="6"/>
+  </g>
+  <g stroke="#0081D5" stroke-width="2" fill="none">
+    <path d="M100 58V86" marker-start="url(#a)" marker-end="url(#a)"/>
+    <path d="M100 114V142" marker-start="url(#a)" marker-end="url(#a)"/>
+    <path d="M94 88H120M94 112H120" stroke-width="1"/>
+    <path d="M124 128H176" marker-start="url(#a)" marker-end="url(#a)"/>
+    <path d="M122 114V132M178 114V132" stroke-width="1"/>
+    <path d="M198 95V105" marker-start="url(#a)" marker-end="url(#a)"/>
+    <path d="M180 94H204M180 106H236" stroke-width="1"/>
+    <path d="M232 98V105" marker-end="url(#a)"/>
+    <path d="M232 121V113" marker-end="url(#a)"/>
+    <path d="M180 112H236" stroke-width="1"/>
+    <path d="M236 42L262 16" marker-start="url(#a)" marker-end="url(#a)"/>
+  </g>
+  <g fill="#0081D5" font-size="20">
+    <text x="78" y="79">h</text>
+    <text x="78" y="135">h</text>
+    <text x="140" y="152" font-size="18">W</text>
+    <text x="206" y="106" font-size="16">S</text>
+    <text x="240" y="116" font-size="16">T</text>
+    <text x="264" y="36">L</text>
+  </g>
+</svg>

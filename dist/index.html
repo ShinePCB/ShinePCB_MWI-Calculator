@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta data-i18n-content="晟电 SUNDEN 高频板材阻抗计算器：选择晟电板材，计算微带线、带状线、接地共面波导及耦合线的阻抗、损耗、时延与温升。计算在浏览器本地完成。" name="description" content="晟电 SUNDEN 高频板材阻抗计算器：选择晟电板材，计算微带线、带状线、接地共面波导及耦合线的阻抗、损耗、时延与温升。计算在浏览器本地完成。">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" href="./img/shinepcb-logo.png?v=095996b694" type="image/png">
+  <link rel="stylesheet" href="./styles.css?v=095996b694">
+  <title data-i18n="ShinePCB 板材阻抗计算器">ShinePCB 板材阻抗计算器</title>
+  <script>try { const t = localStorage.getItem("sunden.theme"); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch {}</script>
+</head>
+<body>
+  <div class="app shell" id="app">
+
+    <!-- left: menu, design type, navigation, calculate, units -->
+    <aside data-i18n-aria-label="导航" class="col-nav sidenav" id="sideNav" aria-label="导航">
+      <div class="nav-head">
+        <div class="menu">
+          <button data-i18n-aria-label="菜单" type="button" class="hamburger" id="menuBtn" aria-haspopup="true" aria-expanded="false" aria-label="菜单"><span></span><span></span><span></span></button>
+          <ul class="menu-list" id="menuList" role="menu" hidden>
+            <li><a data-i18n="板材计算器" role="menuitem" href="./" aria-current="page">板材计算器</a></li>
+            <li class="sep" role="separator"></li>
+            <li><button data-i18n="新建计算" type="button" role="menuitem" data-act="new">新建计算</button></li>
+            <li><a data-i18n="索取样品" role="menuitem" id="lnkSamples" target="_blank" rel="noopener">索取样品</a></li>
+            <li><button data-i18n="使用教程" type="button" role="menuitem" data-act="tutorial">使用教程</button></li>
+            <li><a data-i18n="联系我们" role="menuitem" id="lnkContact" target="_blank" rel="noopener">联系我们</a></li>
+            <li><a data-i18n="板材规格书 (PDF)" role="menuitem" href="./sunden-datasheet.pdf" target="_blank" rel="noopener">板材规格书 (PDF)</a></li>
+            <li class="sep" role="separator"></li>
+            <li><button data-i18n="主题：浅色" type="button" role="menuitem" data-act="theme" id="themeBtn">主题：浅色</button></li>
+          </ul>
+        </div>
+        <span data-i18n="板材阻抗计算器" class="app-name">板材阻抗计算器</span>
+      </div>
+
+      <button type="button" class="design-pick" data-area="designTypes">
+        <span class="design-img" id="designImg"></span>
+        <small data-i18n="选择结构类型" id="designCaption">选择结构类型</small>
+      </button>
+
+      <nav class="nav-tree">
+        <p data-i18n="材料" class="nav-group">材料</p>
+        <a data-i18n="选择材料" href="#" data-area="selectMaterial">选择材料</a>
+        <a data-i18n="材料属性" href="#" data-area="materialProperties">材料属性</a>
+        <p data-i18n="参数" class="nav-group">参数</p>
+        <a data-i18n="导体参数" href="#" data-area="conductorParameters">导体参数</a>
+        <a data-i18n="线路参数" href="#" data-area="circuitParameters">线路参数</a>
+        <a data-i18n="电气参数" href="#" data-area="electricalParameters">电气参数</a>
+      </nav>
+
+      <div class="nav-foot">
+        <button data-i18n="计算" type="button" class="btn primary calc-btn" data-calc>计算</button>
+        <div class="switch-row" id="unitRow">
+          <button data-i18n="英制" type="button" class="switch-lbl" data-unit="english">英制</button>
+          <label class="switch"><input data-i18n-aria-label="公制单位" type="checkbox" id="unitSwitch" aria-label="公制单位"><span></span></label>
+          <button data-i18n="公制" type="button" class="switch-lbl" data-unit="metric">公制</button>
+        </div>
+      </div>
+    </aside>
+
+    <button data-i18n-aria-label="关闭导航" type="button" class="nav-backdrop" id="navBackdrop" aria-label="关闭导航" hidden></button>
+    <main class="main" id="main" tabindex="-1">
+      <header class="page-head">
+        <button data-i18n="☰ 页面" type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="sideNav">☰ 页面</button>
+        <h1 data-i18n="ShinePCB 板材阻抗计算器">ShinePCB 板材阻抗计算器</h1>
+        <button type="button" id="languageBtn" class="language-switch" aria-label="中文 / English">English</button>
+      </header>
+      <div class="workspace">
+        <!-- middle: the selected input area -->
+        <section class="col col-area" aria-labelledby="areaName">
+          <h2 data-i18n="结构类型" class="col-title" id="areaName" tabindex="-1">结构类型</h2>
+          <div class="area" id="areaSection"></div>
+          <div class="mobile-calc"><button data-i18n="计算" type="button" class="btn primary calc-btn" data-calc>计算</button></div>
+        </section>
+
+        <!-- right: summary, output, parameters -->
+        <section data-i18n-aria-label="计算结果" class="col-out" aria-label="计算结果">
+          <div class="col summary-panel">
+            <div class="brand">
+              <span class="brand-logo">
+                <img src="./img/shinepcb-logo.png?v=095996b694" alt="ShinePCB" width="1023" height="340">
+              </span>
+              <span data-i18n="高频板材 · 微波阻抗计算" class="brand-tagline">高频板材 · 微波阻抗计算</span>
+            </div>
+
+            <h2 data-i18n="输入参数" class="sec-title" id="inputTitle">输入参数</h2>
+            <div class="inputs-summary" id="inputSummary"></div>
+          </div>
+
+          <div class="col result-panel">
+            <div class="sec-head">
+              <h2 data-i18n="计算结果" class="sec-title">计算结果</h2>
+              <button data-i18n="下载 CSV" type="button" class="btn primary small" id="csvBtn" hidden>下载 CSV</button>
+            </div>
+            <div class="output" id="output" aria-live="polite"><p data-i18n="暂无计算结果。设置参数后点击“计算”。" class="empty">暂无计算结果。设置参数后点击“计算”。</p></div>
+          </div>
+
+          <div class="col sec-block">
+            <h2 data-i18n="计算参数与分享" class="sec-title">计算参数与分享</h2>
+            <p data-i18n="计算在浏览器本地完成（KiCad 传输线内核编译为 WebAssembly），不经过服务器接口。下面的 JSON 可复制存档；分享链接会还原全部输入。" class="note">计算在浏览器本地完成（KiCad 传输线内核编译为 WebAssembly），不经过服务器接口。下面的 JSON 可复制存档；分享链接会还原全部输入。</p>
+            <textarea data-i18n-aria-label="计算参数 JSON" id="paramJson" class="json" readonly spellcheck="false" aria-label="计算参数 JSON"></textarea>
+            <div class="btn-row">
+              <button data-i18n="复制 JSON" type="button" class="btn small" id="copyJson">复制 JSON</button>
+              <button data-i18n="复制分享链接" type="button" class="btn small" id="copyLink">复制分享链接</button>
+              <span class="copied" id="copied" role="status"></span>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal" id="modal" hidden>
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-head"><h3 data-i18n="说明" id="modalTitle">说明</h3><button data-i18n-aria-label="关闭" type="button" class="x" data-close aria-label="关闭">×</button></div>
+      <div class="modal-body" id="modalBody"></div>
+      <div class="modal-foot"><button data-i18n="关闭" type="button" class="btn" data-close>关闭</button></div>
+    </div>
+  </div>
+
+  <script type="module" src="./mwi.js?v=095996b694"></script>
+</body>
+</html>
