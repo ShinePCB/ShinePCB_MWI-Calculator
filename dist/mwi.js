@@ -1,11 +1,11 @@
-import { t as i18n, language, localeTag, canonicalText, localizeStatic, changeLanguage } from "./i18n.js?v=040ec6b489";
+import { t as i18n, language, localeTag, canonicalText, localizeStatic, changeLanguage } from "./i18n.js?v=01b1a032c3";
 /* 晟电板材阻抗计算器 – page logic.
  * Layout and workflow follow a microwave-impedance calculator: pick a structure, a SUNDEN material,
  * conductor / circuit / electrical parameters, then Calculate (analysis or width synthesis, at one
  * frequency or over a range). Numbers come from engine.js (KiCad WASM + closed-form models).
  * SPDX-License-Identifier: GPL-3.0-or-later */
-import { createEngine, DESIGNS as ENGINE_DESIGNS, djordjevicSarkar, NP2DB } from "./engine.js?v=040ec6b489";
-import { MATERIALS } from "./materials.js?v=040ec6b489";
+import { createEngine, DESIGNS as ENGINE_DESIGNS, djordjevicSarkar, NP2DB } from "./engine.js?v=01b1a032c3";
+import { MATERIALS } from "./materials.js?v=01b1a032c3";
 
 const DESIGNS = ENGINE_DESIGNS.map(d => ({ ...d, name: i18n(d.name) }));
 const designOf = code => DESIGNS.find(d => d.code === code);
@@ -177,7 +177,7 @@ function designNote(code) {
     SB: i18n("上下叠放的两根信号线，相距 S，外侧各一层介质 h。"),
   }[code];
 }
-const imgSrc = (d) => (d.code === "SB" ? "./img/broadside_stripline.svg?v=040ec6b489" : `./img/kicad/${d.img}.png`);
+const imgSrc = (d) => (d.code === "SB" ? "./img/broadside_stripline.svg?v=01b1a032c3" : `./img/kicad/${d.img}.png`);
 
 /* ---------- area switching ---------- */
 let area = "designTypes";
@@ -794,7 +794,7 @@ function setTheme(t) {
 async function boot() {
   let wasm;
   try {
-    const resp = await fetch("./kicad-transline.wasm?v=040ec6b489");
+    const resp = await fetch("./kicad-transline.wasm?v=01b1a032c3");
     if (!resp.ok) throw new Error(i18n`kicad-transline.wasm 返回 HTTP ${resp.status}`);
     ({ instance: { exports: wasm } } = await WebAssembly.instantiate(await resp.arrayBuffer()));
     if (wasm.tl_abi_version() !== 1) throw new Error(i18n("WASM 接口版本与页面不匹配"));

@@ -281,3 +281,15 @@ input[readonly] { opacity: 0.6; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
 }
+
+/* The ShinePCB host page owns scrolling in iframe mode. */
+html[data-embedded="true"] body,
+html[data-embedded="true"] .shell { min-height: 0; }
+html[data-embedded="true"] #languageBtn { display: none; }
+html[data-embedded="true"] .col-nav { max-height: var(--embed-viewport-height, 800px); }
+html[data-embedded="true"] .mat-wrap { max-height: calc(var(--embed-viewport-height, 800px) * .7); }
+html[data-embedded="true"] .modal { align-items: start; padding-top: calc(var(--embed-visible-top, 0px) + 16px); }
+html[data-embedded="true"] .modal-box { max-height: max(160px, calc(var(--embed-visible-height, 800px) - 32px)); }
+@media (max-width: 900px) {
+  html[data-embedded="true"] .col-nav { top: var(--embed-visible-top, 0px); bottom: auto; height: auto; max-height: var(--embed-visible-height, 800px); }
+}

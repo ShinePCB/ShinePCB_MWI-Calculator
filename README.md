@@ -30,6 +30,16 @@ Open http://127.0.0.1:18771. Select English with `?lang=en` or the language butt
 
 `dist/` contains a ready-to-serve static website, including the compiled WASM engine. Any static HTTP host that serves `.wasm` as `application/wasm` can host it, including under a subdirectory. Serve over HTTP(S) rather than opening `index.html` as a local file. Hosting access logs depend on the hosting provider; the application does not send parameters to a calculation API.
 
+## Website embedding
+
+The ShinePCB website embeds the calculator at `https://shinepcba.com/en/board-calculator/`
+(Chinese: `/zh/board-calculator/`). The iframe uses `?lang=en&embed=1` or
+`?lang=zh&embed=1`. In this optional mode the host sets the language, owns scrolling,
+and exchanges validated viewport/resize messages with `dist/embed.js`. Messages are
+accepted only from the parent at `https://shinepcba.com`, `https://www.shinepcba.com`,
+or an HTTP localhost/127.0.0.1 development origin. The standalone page keeps its
+own language switch and layout.
+
 ## Models and limits
 
 | Code | Structure | Model | Loss estimate |

@@ -8,11 +8,11 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const dist = path.join(path.resolve(path.dirname(fileURLToPath(import.meta.url)), ".."), "dist");
-const TEXT = ["index.html", "mwi.js", "engine.js", "materials.js", "i18n.js", "locales/en.js", "styles.css"];
+const TEXT = ["index.html", "mwi.js", "engine.js", "materials.js", "i18n.js", "locales/en.js", "styles.css", "embed.js"];
 const BINARY = ["kicad-transline.wasm", "img/broadside_stripline.svg", "img/shinepcb-logo.png"];
 const STAMP = /\?v=[0-9a-f]+/g;
 // Every in-page reference to a versioned file, e.g. "./mwi.js" or "./mwi.js?v=0123abcd".
-const REF = /(\.\/(?:styles\.css|i18n\.js|locales\/en\.js|img\/shinepcb-logo\.png|mwi\.js|engine\.js|materials\.js|kicad-transline\.wasm|img\/broadside_stripline\.svg))(?:\?v=[0-9a-f]+)?(?=["'`])/g;
+const REF = /(\.\/(?:styles\.css|embed\.js|i18n\.js|locales\/en\.js|img\/shinepcb-logo\.png|mwi\.js|engine\.js|materials\.js|kicad-transline\.wasm|img\/broadside_stripline\.svg))(?:\?v=[0-9a-f]+)?(?=["'`])/g;
 
 const texts = Object.fromEntries(await Promise.all(TEXT.map(async (f) => [f, await readFile(path.join(dist, f), "utf8")])));
 const hash = createHash("sha256");
