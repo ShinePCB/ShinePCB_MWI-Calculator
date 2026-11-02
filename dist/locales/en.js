@@ -215,7 +215,6 @@ export const english = {
   "新建计算": "New calculation",
   "索取样品": "Request samples",
   "联系我们": "Contact us",
-  "板材规格书 (PDF)": "Material datasheet (PDF)",
   "主题：浅色": "Theme: light",
   "板材阻抗计算器": "Board impedance calculator",
   "参数": "Parameters",

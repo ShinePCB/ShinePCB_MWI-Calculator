@@ -73,7 +73,7 @@ Missing numeric values are NULL. `pnpm run build` reads SQLite without modifying
 pnpm run materials:import --input path/to/source.csv --output path/to/new.sqlite
 ```
 
-Import refuses to overwrite an existing database. Numeric fields and thickness mappings are extracted from the original parameters; maintain their consistency when editing manually. Source attribution remains SUNDEN; the included datasheet is `dist/sunden-datasheet.pdf`.
+Import refuses to overwrite an existing database. Numeric fields and thickness mappings are extracted from the original parameters; maintain their consistency when editing manually. Source attribution remains SUNDEN.
 
 ## Test and rebuild
 
